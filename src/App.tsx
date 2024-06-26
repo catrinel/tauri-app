@@ -53,7 +53,8 @@ function App() {
     <div class="container">
       <h1>Welcome to Tauri!</h1>
 
-      <Show when={system}>{system.platform} - {system.locale}</Show>
+      <Show when={system.platform}>{system.platform} - </Show>
+      <Show when={system.locale}>{system.locale}</Show>
 
       <div class="row">
         <a href="https://vitejs.dev" target="_blank">
