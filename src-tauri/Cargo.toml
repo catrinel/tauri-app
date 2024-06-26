@@ -26,3 +26,6 @@ strip = true # strip symbols from the binary
 
 opt-level = "s" # optimize for binary size --- first to check
 codegen-units = 1 # may increase time, but reduce binary size -- if build gets too
+
+[target."cfg(not(any(target_os = \"android\", target_os = \"ios\")))".dependencies]
+tauri-plugin-updater = "2.0.0-beta.8"
