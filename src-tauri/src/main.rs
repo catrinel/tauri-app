@@ -8,16 +8,16 @@ fn greet(name: &str) -> String {
 }
 
 fn main() {
-    #[cfg(debug_assertions)]
-    let devtools = tauri_plugin_devtools::init(); // initialize the plugin as early as possible
+    // #[cfg(debug_assertions)]
+    // let devtools = tauri_plugin_devtools::init(); // initialize the plugin as early as possible
 
-    let mut builder = tauri::Builder::default();
+    // let mut builder = tauri::Builder::default();
 
-    #[cfg(debug_assertions)]
-    {
-        builder = builder.plugin(devtools); // then register it with Tauri
-        
-    }
+    // #[cfg(debug_assertions)]
+    // {
+    //     builder = builder.plugin(devtools); // then register it with Tauri
+
+    // }
 
     tauri::Builder::default()
         .plugin(tauri_plugin_process::init())
