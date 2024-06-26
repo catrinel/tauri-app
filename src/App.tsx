@@ -5,6 +5,7 @@ import "./App.css";
 import { createStore } from "solid-js/store";
 import { locale, platform } from "@tauri-apps/plugin-os";
 import { isPermissionGranted, requestPermission, sendNotification } from "@tauri-apps/plugin-notification";
+import { checkForUpdates } from "./updater";
 
 function App() {
   const [system, setSystem] = createStore<Record<"platform" | "locale", null |string>>({
@@ -15,6 +16,8 @@ function App() {
   const [name, setName] = createSignal("");
 
   onMount(async () => {
+    await checkForUpdates()
+
     const plat = await platform()
     const loc = await locale()
 

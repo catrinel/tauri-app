@@ -9,14 +9,14 @@ on:
       app-slug:
         description: "The slug of your app in your CrabNebula Cloud org"
         required: true
-        default: "myTauriApp"
+        default: "mytauriapp"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 env:
-  CN_APP_SLUG: ${{ github.event.inputs.app-slug || 'myTauriApp' }}
+  CN_APP_SLUG: ${{ github.event.inputs.app-slug || 'mytauriapp' }}
 
 jobs:
   draft:
