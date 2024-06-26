@@ -4,6 +4,7 @@ import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
 import { createStore } from "solid-js/store";
 import { locale, platform } from "@tauri-apps/plugin-os";
+import { isPermissionGranted, requestPermission, sendNotification } from "@tauri-apps/plugin-notification";
 
 function App() {
   const [system, setSystem] = createStore<Record<"platform" | "locale", null |string>>({
@@ -18,6 +19,26 @@ function App() {
     const loc = await locale()
 
     setSystem({platform: plat, locale: loc})
+
+    const hasPermission = await isPermissionGranted();
+
+    if (!hasPermission) {
+      const permission  = await requestPermission();
+
+      if (permission === "granted") {
+        sendNotification({
+          title: " Hello ! ",
+          body: "This is a notification from Js and Rust"
+        })
+      } else {
+        console.log("Permission denied")
+      }
+    } else {
+      sendNotification({
+        title: " Hello ! ",
+        body: "We already had permission"
+      })
+    }
   })
 
   async function greet() {
